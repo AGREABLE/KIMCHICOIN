@@ -13,15 +13,22 @@
             <!-- Post Content
             ============================================= -->
             <div class="nobottommargin clearfix">
+                <div style="margin-bottom:60px;">
+                    <a class="btn btn-default fright" href="/<?php echo $cname?>/add">등록</a>
+                </div>
+                <div class="clear"></div>
+
                 <div class="table-responsive">
                     <table class="table table-hover valign-m">
                         <thead>
                         <tr>
                             <th>#</th>
                             <th>노출</th>
+                            <th>CURRENCY</th>
                             <th>SOURCE</th>
                             <th>TITLE</th>
                             <th>LINK</th>
+                            <th>DUE DATE</th>
                             <th>작성일시</th>
                         </tr>
                         </thead>
@@ -33,9 +40,11 @@
                             <tr>
                                 <td><?php echo $data->total - $params['offset'] - $i?></td>
                                 <td><input type="checkbox" class="js-switch isrelease-onoff" data-source="<?php echo $item->source?>" data-external_key="<?php echo $item->external_key?>" value="1" <?php echo ( $item->is_release == 'A' ) ? "checked" : ""?>/></td>
+                                <td><?php echo  $item->currency?></td>
                                 <td><?php echo  $item->source?></td>
                                 <td><a href="/<?php echo $cname?>/modify/<?php echo $item->source?>/<?php echo $item->external_key?>"><?php echo  $item->title?></a></td>
                                 <td><a href="<?php echo $item->link?>" target="_blank">LINK</a></td>
+                                <td><?php echo  $item->duedate?></td>
                                 <td><?php echo  $item->created_at?></td>
                             </tr>
                         <?php } ?>
