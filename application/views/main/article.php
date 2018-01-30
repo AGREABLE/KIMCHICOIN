@@ -25,6 +25,9 @@
                     ============================================= -->
                     <ul class="entry-meta clearfix">
                         <li class="timeago" datetime="<?php echo $one->create_timestamp?>"><i class="icon-calendar3"></i> <?php echo $one->created_at?></li>
+                        <?php if( $one->duedate && strtotime( $one->duedate ) >= strtotime( date( 'Y-m-d' ) ) ) { ?>
+                        <li class="dday"><?php echo ( strtotime( $one->duedate ) == strtotime( date( 'Y-m-d' ) ) ) ? "D-Day" : "D-" . ( ( strtotime( $one->duedate ) - strtotime( date( 'Y-m-d' ) ) ) / ( 60 * 60 * 24 ) )?></li>
+                        <?php } ?>
                         <li><i class="icon-folder-open"></i> <?php echo $one->source?></li>
                         <li><a href="#"><i class="icon-picture"></i></a></li>
                     </ul><!-- .entry-meta end -->

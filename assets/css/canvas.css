@@ -18,7 +18,7 @@
     -webkit-box-orient: vertical;
 }
 
-.entry-meta li.timeago, .comment-content .comment-author span a.timeago {
+.entry-meta li.timeago, .comment-content .comment-author span a.timeago, .entry-meta li.dday {
     font-family: sans-serif;
     font-style: normal;
 }
