@@ -111,7 +111,7 @@ class main extends CI_Controller {
 
         $this->data['prev'] = $this->db->query( "SELECT *, {$this->langlib->DB_SELECT['BOARD']} FROM BOARD WHERE {$where} AND created_at >= '{$this->data['one']->created_at}' 
                                                    AND external_key != '{$this->data['one']->external_key}' ORDER BY created_at ASC LIMIT 1" )->row();
-        $this->data['next'] = $this->db->query( "SELECT *, {$this->langlib->DB_SELECT['BOARD']} FROM BOARD WHERE {$where} AND created_at <= '{$this->data['one']->created_at}' 
+        $this->data['next'] = $this->db->query( "SELECT *, {$this->langlib->DB_SELECT['BOARD']} FROM BOARD WHERE {$where} AND created_at <= '{$this->data['one']->created_at}'
                                                    AND external_key != '{$this->data['one']->external_key}' ORDER BY created_at DESC LIMIT 1" )->row();
 
         $data['comments'] = $this->db->query( "SELECT *, {$this->langlib->DB_SELECT['COMMENT']} FROM COMMENT WHERE board_source = '{$this->data['one']->source}' 
