@@ -10,7 +10,7 @@ class main extends CI_Controller {
 		$this->data['cname'] = $this->router->fetch_class();
 	}
 	
-	public function index() {
+	public function index( $currency = false ) {
         $this->data['params'] = $this->baselib->GetParams(
             array(
                 array( 'key' => 'limit', 'value' => 12 )
@@ -20,10 +20,15 @@ class main extends CI_Controller {
         $this->data['params']['offset'] = $this->data['params']['per_page'];
         unset( $this->data['params']['per_page'] );
 
-        $query = "SELECT count(*) as cnt FROM BOARD WHERE is_release = 'A'";
+        $where = "is_release = 'A'";
+        if ( $currency ) {
+            $where .= " AND currency like '%{$currency}%'";
+        }
+
+        $query = "SELECT count(*) as cnt FROM BOARD WHERE {$where}";
         $data['total'] = $this->db->query( $query )->row()->cnt;
 
-        $query = "SELECT * FROM BOARD WHERE is_release = 'A' ORDER BY created_at DESC LIMIT {$this->data['params']['offset']}, {$this->data['params']['limit']}";
+        $query = "SELECT *, {$this->langlib->DB_SELECT['BOARD']} FROM BOARD WHERE {$where} ORDER BY created_at DESC LIMIT {$this->data['params']['offset']}, {$this->data['params']['limit']}";
         $data['lists'] = $this->db->query( $query )->result();
 
         $this->data['data'] = (object)$data;
@@ -93,19 +98,23 @@ class main extends CI_Controller {
             )
         );
 
-
-        $this->data['one'] = $this->connector_m->get( 'BOARD', array( 'source' => $this->data['params']['s'], 'external_key' => $this->data['params']['k']
-                                                                , 'is_release' => "A" ) );
-        if ( !$this->data['one'] ) {
-            $this->data['one'] = $this->db->query( "SELECT * FROM BOARD WHERE is_release = 'A' ORDER BY created_at DESC" )->row();
+        $where = "is_release = 'A'";
+        if ( $this->menu->current[0]['v'] != $this->data['cname'] ) {
+            $where .= " AND currency like '%{$this->menu->current[0]['v']}%'";
         }
 
-        $this->data['prev'] = $this->db->query( "SELECT * FROM BOARD WHERE is_release = 'A' AND created_at >= '{$this->data['one']->created_at}' 
+        $this->data['one'] = $this->db->query( "SELECT *, {$this->langlib->DB_SELECT['BOARD']} FROM BOARD WHERE source = '{$this->data['params']['s']}'
+                                AND external_key = '{$this->data['params']['k']}' AND is_release = 'A' ORDER BY created_at DESC" )->row();
+        if ( !$this->data['one'] ) {
+            $this->data['one'] = $this->db->query( "SELECT *, {$this->langlib->DB_SELECT['BOARD']} FROM BOARD WHERE {$where} ORDER BY created_at DESC" )->row();
+        }
+
+        $this->data['prev'] = $this->db->query( "SELECT *, {$this->langlib->DB_SELECT['BOARD']} FROM BOARD WHERE {$where} AND created_at >= '{$this->data['one']->created_at}' 
                                                    AND external_key != '{$this->data['one']->external_key}' ORDER BY created_at ASC LIMIT 1" )->row();
-        $this->data['next'] = $this->db->query( "SELECT * FROM BOARD WHERE is_release = 'A' AND created_at <= '{$this->data['one']->created_at}' 
+        $this->data['next'] = $this->db->query( "SELECT *, {$this->langlib->DB_SELECT['BOARD']} FROM BOARD WHERE {$where} AND created_at <= '{$this->data['one']->created_at}' 
                                                    AND external_key != '{$this->data['one']->external_key}' ORDER BY created_at DESC LIMIT 1" )->row();
 
-        $data['comments'] = $this->db->query( "SELECT * FROM COMMENT WHERE board_source = '{$this->data['one']->source}' 
+        $data['comments'] = $this->db->query( "SELECT *, {$this->langlib->DB_SELECT['COMMENT']} FROM COMMENT WHERE board_source = '{$this->data['one']->source}' 
                                                   AND board_external_key = '{$this->data['one']->external_key}' ORDER BY created_at DESC" )->result();
 
         $this->data['data'] = (object)$data;
@@ -187,5 +196,12 @@ class main extends CI_Controller {
 
         $this->db->where( 'idx', $this->data['params']['idx'] )->where( 'account_idx', $_SESSION['account']->idx )->delete( 'COMMENT' );
         $this->baselib->PrintResultAndMessage( 200, "" );
+    }
+
+    public function tt() {
+	    foreach ( $this->db->where( 'source', 'COINMARKETCAL' )->get( 'BOARD' )->result() as $item ) {
+	        $duedate = trim( explode( "(", explode( "/", $item->title )[1] )[0] );
+	        $this->db->where( 'source', $item->source )->where( 'external_key', $item->external_key )->set( 'duedate', $duedate )->update( 'BOARD' );
+        }
     }
 }

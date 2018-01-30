@@ -11,26 +11,23 @@
 
                     <!-- Posts
                     ============================================= -->
-                    <div id="posts" class="post-grid grid-3 clearfix">
+                    <div id="posts" class="post-grid grid-2 clearfix">
 
                     <?php
                     for ( $i = 0; $i < count( $data->lists ); $i++ ) {
                         $item = $data->lists[$i];
                         ?>
                         <div class="entry clearfix">
-                            <div class="entry-image">
-                                <a href="<?php echo $item->link?>" target="_blank"><img class="image_fade" src="<?php echo $item->img?>" alt="<?php echo $item->title?>"></a>
-                            </div>
                             <div class="entry-title">
-                                <h2><a href="<?php echo $item->link?>" target="_blank"><?php echo $item->title?></a></h2>
+                                <h4><a href="/<?php echo $ci->menu->current[0]['v']?>/article?s=<?php echo $item->source?>&k=<?php echo $item->external_key?>" style="color:black;"><?php echo $item->_title?></a></h4>
                             </div>
                             <ul class="entry-meta clearfix">
-                                <li><i class="icon-calendar3"></i> <?php echo $item->created_at?></li>
+                                <li class="timeago" datetime="<?php echo $item->create_timestamp?>"><i class="icon-calendar3"></i> <?php echo $item->created_at?></li>
                                 <li><a href="#"><i class="icon-picture"></i></a></li>
                             </ul>
                             <div class="entry-content">
-                                <p><?php echo strip_tags( $item->contents )?></p>
-                                <a href="/main/article?s=<?php echo $item->source?>&k=<?php echo $item->external_key?>" class="more-link">Read More</a>
+                                <p><?php echo strip_tags( $item->_contents )?></p>
+                                <a href="/<?php echo $ci->menu->current[0]['v']?>/article?s=<?php echo $item->source?>&k=<?php echo $item->external_key?>" class="more-link">Read More</a>
                             </div>
                         </div>
                     <?php } ?>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="janghot.xyz" filePermissions="420" folderPermissions="493">
+    <serverData>
+      <paths name="110.10.189.236_gunjong">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="125.209.197.225">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="162.255.119.202_drinkstyle">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="220.230.115.122_kccsc">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="220.230.118.196_durian">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="cococamera.com">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="http://web1.pharmatalk.kr">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="janghot.xyz">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/var/wwwcoin" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath path="/var/wwwcoin/assets/canvas" />
+            <excludedPath path="/var/wwwcoin/assets/chartist" />
+            <excludedPath path="/var/wwwcoin/assets/html2jpg" />
+            <excludedPath path="/var/wwwcoin/assets/palas" />
+            <excludedPath path="/var/wwwcoin/uploads" />
+            <excludedPath path="/var/wwwcoin/system" />
+            <excludedPath path="/var/wwwcoin/index.php" />
+            <excludedPath path="/var/wwwcoin/LICENSE" />
+            <excludedPath path="/var/wwwcoin/README.md" />
+            <excludedPath path="/var/wwwcoin/application/core" />
+            <excludedPath path="/var/wwwcoin/application/cache" />
+            <excludedPath path="/var/wwwcoin/application/helpers" />
+            <excludedPath path="/var/wwwcoin/application/hooks" />
+            <excludedPath path="/var/wwwcoin/application/_include" />
+            <excludedPath path="/var/wwwcoin/application/logs" />
+            <excludedPath path="/var/wwwcoin/application/models" />
+            <excludedPath path="/var/wwwcoin/application/third_party" />
+            <excludedPath path="/var/wwwcoin/application/.htaccess" />
+            <excludedPath path="/var/wwwcoin/application/index.html" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+      <paths name="janghot.xyz (project level)">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="smcw.cafe24.com">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ON_EXPLICIT_SAVE" />
+  </component>
+</project>

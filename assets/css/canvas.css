@@ -1,4 +1,4 @@
-.entry-title h2 a {
+.entry-title h4 a {
     height: 54px;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -16,4 +16,9 @@
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+}
+
+.entry-meta li.timeago, .comment-content .comment-author span a.timeago {
+    font-family: sans-serif;
+    font-style: normal;
 }

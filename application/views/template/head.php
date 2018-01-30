@@ -75,62 +75,68 @@
 <div id="wrapper" class="clearfix">
 
     <!-- Header
-    ============================================= -->
-    <header id="header" class="transparent-header full-header" data-sticky-class="not-dark">
+         ============================================= -->
+    <header id="header" class="sticky-style-2">
+
+        <div class="container clearfix">
+
+            <!-- Logo
+            ============================================= -->
+            <div id="logo" class="divcenter">
+                <a href="/" class="standard-logo divcenter" data-dark-logo="/assets/images/logo-dark.png"><img class="divcenter" src="/assets/images/logo.png" alt="Logo"></a>
+                <a href="/" class="retina-logo divcenter" data-dark-logo="/assets/images/logo-dark@2x.png"><img class="divcenter"  src="/assets/images/logo@2x.png" alt="Logo"></a>
+            </div><!-- #logo end -->
+
+
+        </div>
 
         <div id="header-wrap">
 
-            <div class="container clearfix">
+            <!-- Primary Navigation
+            ============================================= -->
+            <nav id="primary-menu" class="style-2 center">
 
-                <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+                <div class="container clearfix">
 
-                <!-- Logo
-                ============================================= -->
-                <div id="logo">
-                    <a href="/" class="standard-logo" data-dark-logo="/assets/images/logo-dark.png"><img src="/assets/images/logo.png" alt="Logo"></a>
-                    <a href="/" class="retina-logo" data-dark-logo="/assets/images/logo-dark@2x.png"><img src="/assets/images/logo@2x.png" alt="Logo"></a>
-                </div><!-- #logo end -->
-
-                <!-- Primary Navigation
-                ============================================= -->
-                <nav id="primary-menu" class="dark">
-
+                    <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
 
                     <ul>
                         <?php
                         $i = 0;
                         foreach ( $ci->menu->list as $mainMenuName => $mainMenu ) {
-                            if ( in_array( $ci->menu->accountType, $mainMenu['available_account_type'] ) && $mainMenu['visible'] ) {
-                                ?>
-                                <li class="<?php echo ( $mainMenu['v'] == $ci->menu->current[0]['v'] ) ? "current" : ""?>">
-                                    <a href="/<?php echo ( $mainMenu['sub'] != NULL ) ? "#" : $mainMenu['v']?>"><div><?php echo $mainMenuName;?></div></a>
-                                    <?php if ( $mainMenu['sub'] != NULL ) { ?>
-                                        <ul>
-                                            <?php foreach ( $mainMenu['sub'] as $subMenuName => $subMenu ) {
-                                                if ( in_array( $ci->menu->accountType, $subMenu['available_account_type'] ) ) {?>
-                                                    <li><a href="/<?php echo "{$mainMenu['v']}/{$subMenu['v']}"?>"><div><?php echo $subMenuName;?></a></div></li>
-                                                    <?php
-                                                }
-                                            }
-                                            ?>
-                                        </ul>
-                                    <?php } ?>
-                                </li>
-                                <?php
-                            }
-                        }
+                        if ( in_array( $ci->menu->accountType, $mainMenu['available_account_type'] ) && $mainMenu['visible'] )
+                        {
                         ?>
+                         <li class="<?php echo ( $mainMenu['v'] == $ci->menu->current[0]['v'] ) ? "current" : ""?>">
+                            <a href="/<?php echo ( $mainMenu['sub'] != NULL ) ? "#" : $mainMenu['v']?>"><div><?php echo $mainMenuName;?></div></a>
+                            <?php if ( $mainMenu['sub'] != NULL ) { ?>
+                            <ul>
+                                <?php foreach ( $mainMenu['sub'] as $subMenuName => $subMenu ) {
+                                if ( in_array( $ci->menu->accountType, $subMenu['available_account_type'] ) ) {?>
+                                    <li><a href="/<?php echo "{$mainMenu['v']}/{$subMenu['v']}"?>"><div><?php echo $subMenuName;?></a></div></li>
+                                 <?php }
+                                }
+                              ?>
+                             </ul>
+                            <?php } ?>
+                        </li>
+                        <?php
+                        }
+                    }
+                ?>
                     </ul>
-
-                    <?php if ( $ci->menu->accountType > $ci->menu->ACCOUNT_NONE ) { ?>
+                    <!--
+                    <!-- Top Search
                     <div id="top-search">
-                        <a href="/main/logout"><i class="icon-line-power"></i><i class="icon-line-cross"></i></a>
+                        <a href="#" id="top-search-trigger"><i class="icon-search3"></i><i class="icon-line-cross"></i></a>
+                        <form action="search.html" method="get">
+                            <input type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter..">
+                        </form>
                     </div>
-                    <?php } ?>
+                    -->
+                </div>
 
-                </nav><!-- #primary-menu end -->
-
-            </div>
+            </nav><!-- #primary-menu end -->
 
         </div>
 

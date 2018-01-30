@@ -17,10 +17,13 @@ class menu {
 	public function __construct() {		
 		$this->ci = & get_instance();		
 		date_default_timezone_set('Asia/Seoul');
-		
-		$this->current[0]['v'] = strtolower( $this->ci->router->fetch_class() );
+
+		$path = explode( "/", explode( "?", $_SERVER['REQUEST_URI'] )[0] );
+        array_shift( $path );
+
+        $this->current[2]['v'] = strtolower( ( $this->ci->router->fetch_directory() ) ? str_replace("/", "", $this->ci->router->fetch_directory()) : "" );
+		$this->current[0]['v'] = ( $this->current[2]['v'] == "" ) ? $path[0] : strtolower( $this->ci->router->fetch_class() );
 		$this->current[1]['v'] = strtolower( $this->ci->router->fetch_method() );
-		$this->current[2]['v'] = strtolower( ( $this->ci->router->fetch_directory() ) ? str_replace("/", "", $this->ci->router->fetch_directory()) : "" );
 
 		if ( isset( $_SESSION['account'] ) ) {
 			$this->accountType = $_SESSION['account']->account_type;
@@ -41,8 +44,14 @@ class menu {
 	private function __setMenu() {
 		$this->list = array(
 			//'Dashboard' => array( 'v' => 'dashboard', 'icon' => 'fa fa-dashboard', 'available_account_type' => array($this->ACCOUNT_SYSTEM_MANAGER, $this->ACCOUNT_PARTNER_BOSS), 'sub' => NULL, 'visible' => true ),
-			'MAIN' => array( 'v' => 'main', 'icon' => 'fa fa-user', 'available_account_type' => array($this->ACCOUNT_NONE, $this->ACCOUNT_PARTNER_STAFF, $this->ACCOUNT_PARTNER_BOSS, $this->ACCOUNT_SYSTEM_MANAGER), 'sub' => NULL, 'visible' => false )
-            ,'NEWS' => array( 'v' => 'adminnews', 'icon' => 'fa fa-user', 'available_account_type' => array($this->ACCOUNT_SYSTEM_MANAGER), 'sub' => NULL, 'visible' => true )
+			'ALL' => array( 'v' => 'main', 'icon' => 'fa fa-user', 'available_account_type' => array($this->ACCOUNT_NONE, $this->ACCOUNT_PARTNER_STAFF, $this->ACCOUNT_PARTNER_BOSS, $this->ACCOUNT_SYSTEM_MANAGER), 'sub' => NULL, 'visible' => true )
+            ,'BTC' => array( 'v' => 'btc', 'icon' => 'fa fa-user', 'available_account_type' => array($this->ACCOUNT_NONE, $this->ACCOUNT_PARTNER_STAFF, $this->ACCOUNT_PARTNER_BOSS, $this->ACCOUNT_SYSTEM_MANAGER), 'sub' => NULL, 'visible' => true )
+            ,'ETH' => array( 'v' => 'eth', 'icon' => 'fa fa-user', 'available_account_type' => array($this->ACCOUNT_NONE, $this->ACCOUNT_PARTNER_STAFF, $this->ACCOUNT_PARTNER_BOSS, $this->ACCOUNT_SYSTEM_MANAGER), 'sub' => NULL, 'visible' => true )
+            ,'XRP' => array( 'v' => 'xrp', 'icon' => 'fa fa-user', 'available_account_type' => array($this->ACCOUNT_NONE, $this->ACCOUNT_PARTNER_STAFF, $this->ACCOUNT_PARTNER_BOSS, $this->ACCOUNT_SYSTEM_MANAGER), 'sub' => NULL, 'visible' => true )
+            ,'EOS' => array( 'v' => 'eos', 'icon' => 'fa fa-user', 'available_account_type' => array($this->ACCOUNT_NONE, $this->ACCOUNT_PARTNER_STAFF, $this->ACCOUNT_PARTNER_BOSS, $this->ACCOUNT_SYSTEM_MANAGER), 'sub' => NULL, 'visible' => true )
+            ,'SNT' => array( 'v' => 'snt', 'icon' => 'fa fa-user', 'available_account_type' => array($this->ACCOUNT_NONE, $this->ACCOUNT_PARTNER_STAFF, $this->ACCOUNT_PARTNER_BOSS, $this->ACCOUNT_SYSTEM_MANAGER), 'sub' => NULL, 'visible' => true )
+            ,'ADA' => array( 'v' => 'ada', 'icon' => 'fa fa-user', 'available_account_type' => array($this->ACCOUNT_NONE, $this->ACCOUNT_PARTNER_STAFF, $this->ACCOUNT_PARTNER_BOSS, $this->ACCOUNT_SYSTEM_MANAGER), 'sub' => NULL, 'visible' => true )
+            ,'ADMINNEWS' => array( 'v' => 'adminnews', 'icon' => 'fa fa-user', 'available_account_type' => array($this->ACCOUNT_SYSTEM_MANAGER), 'sub' => NULL, 'visible' => true )
 		);
 		
 		foreach ( $this->list as $mainMenuName => $mainMenu ) {

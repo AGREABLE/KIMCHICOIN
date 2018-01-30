@@ -17,13 +17,13 @@
                     <!-- Entry Title
                     ============================================= -->
                     <div class="entry-title">
-                        <h2><?php echo $one->title?></h2>
+                        <h2><?php echo $one->_title?></h2>
                     </div><!-- .entry-title end -->
 
                     <!-- Entry Meta
                     ============================================= -->
                     <ul class="entry-meta clearfix">
-                        <li><i class="icon-calendar3"></i> <?php echo $one->created_at?></li>
+                        <li class="timeago" datetime="<?php echo $one->create_timestamp?>"><i class="icon-calendar3"></i> <?php echo $one->created_at?></li>
                         <li><i class="icon-folder-open"></i> <?php echo $one->source?></li>
                         <li><a href="#"><i class="icon-picture"></i></a></li>
                     </ul><!-- .entry-meta end -->
@@ -39,7 +39,7 @@
                     <div class="entry-content notopmargin">
 
                         <div>
-                            <?php echo str_replace( ".", ".<br/><br/>", $one->contents )?>
+                            <?php echo str_replace( ". ", ".<br/><br/>", $one->_contents )?>
                         </div>
                         <div style="margin-top:80px;">
                             source : <a href="<?php echo $one->link?>" target="_blank"><?php echo $one->link?></a>
@@ -89,13 +89,13 @@
 
                     <div class="col_half nobottommargin">
                     <?php if ( $prev ) { ?>
-                        <a href="?s=<?php echo $prev->source?>&k=<?php echo $prev->external_key?>">&lArr; <?php echo $prev->title?></a>
+                        <a href="?s=<?php echo $prev->source?>&k=<?php echo $prev->external_key?>">&lArr; <?php echo $prev->_title?></a>
                     <?php } else { echo "<a>&nbsp;</a>"; }?>
                     </div>
 
                     <div class="col_half col_last tright nobottommargin">
                     <?php if ( $next ) { ?>
-                        <a href="?s=<?php echo $next->source?>&k=<?php echo $next->external_key?>"><?php echo $next->title?> &rArr;</a>
+                        <a href="?s=<?php echo $next->source?>&k=<?php echo $next->external_key?>"><?php echo $next->_title?> &rArr;</a>
                     <?php } else { echo "<a>&nbsp;</a>"; }?>
                     </div>
 
@@ -130,9 +130,9 @@
 
                                 <div class="comment-content clearfix">
 
-                                    <div class="comment-author">ADMIN<span><a href="#" title="Permalink to this comment"><?php echo $item->created_at?></a></span></div>
+                                    <div class="comment-author">ADMIN<span><a href="#" class="timeago" datetime="<?php echo $item->create_timestamp?>"><?php echo $item->created_at?></a></span></div>
 
-                                    <?php echo $item->contents?>
+                                    <?php echo $item->_contents?>
 
                                     <?php if ( $ci->menu->accountType == $ci->menu->ACCOUNT_SYSTEM_MANAGER ) { ?>
                                     <a class='comment-reply-link pointer' onclick="deleteComment(<?php echo $item->idx?>)"><i class="icon-trash"></i></a>
